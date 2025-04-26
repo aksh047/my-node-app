@@ -4,15 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Pull the latest code from GitHub
-                git branch: 'main', url: 'https://github.com/aksh047/my-node-app.git'
-
+                git 'https://github.com/aksh047/my-node-app.git'
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('my-node-app-image')
+                    docker.build('aksh047/my-node-app-image')
                 }
             }
         }
@@ -20,7 +18,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        docker.image('my-node-app-image').push()
+                        docker.image('aksh047/my-node-app-image').push()
                     }
                 }
             }
