@@ -5,7 +5,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Pull the latest code from GitHub
-                git 'https://github.com/aksh047/my-node-app.git'
+                git branch: 'main', url: 'https://github.com/aksh047/my-node-app.git'
+
             }
         }
         stage('Build Docker Image') {
